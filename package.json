@@ -3,13 +3,54 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --passWithNoTests",
+    "test:cov": "jest --coverage",
+    "lint": "eslint \"src/{main,test}/**/*.ts\"",
+    "deploy": "npm run test:cov && npm run build && npm publish",
+    "deploy-beta": "npm run test:cov && npm run build && npm publish --tag beta"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "typescript": "^5.8.3"
+    "@types/jest": "29.5.14",
+    "@types/node": "22.15.3",
+    "@types/supertest": "^6.0.3",
+    "husky": "9.1.7",
+    "jest": "29.7.0",
+    "supertest": "^7.1.0",
+    "ts-jest": "29.3.2",
+    "ts-loader": "9.5.2",
+    "ts-node": "10.9.2",
+    "typescript": "5.8.3"
+  },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "<rootDir>/src/test/jestSetup.ts"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "rootDir": ".",
+    "testRegex": ".(spec|test).ts$",
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "testEnvironment": "node",
+    "collectCoverageFrom": [
+      "src/main/**/{!(index),}.(t|j)s"
+    ],
+    "coverageDirectory": "coverage",
+    "coverageThreshold": {
+      "global": {
+        "statements": 100,
+        "branches": 100,
+        "functions": 100,
+        "lines": 100
+      }
+    }
   }
 }
