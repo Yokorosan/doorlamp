@@ -38,7 +38,7 @@ export class GeneralUtilities {
         return cleanBase
     }
 
-    public static randomGenerator(size:number, lettersAndNumbers = false, lettersOnly = false) {
+    public static randomGenerator(size:number, range = 9, lettersAndNumbers = false, lettersOnly = false) {
         let randomInt: number
         let randomString: string = ""
         let randomDigit: string
@@ -48,7 +48,7 @@ export class GeneralUtilities {
 
         while(parsedSize < size) {
             if(!lettersAndNumbers && !lettersOnly) {
-                randomDigit = String(Math.floor(Math.random() * 10))
+                randomDigit = String(Math.floor(Math.random() * (range + 1)))
                 randomString += randomDigit
             } else if (!lettersAndNumbers && lettersOnly) {
                 randomInt = Math.floor(Math.random() * 27)

@@ -21,7 +21,7 @@ export class CpfOperations {
         return cleanBase === (calculatedBase + secondDv)
     }
 
-    public static generateCpf(state = ''): string {
+    public static generateCpf(format = false, state = ''): string {
         let generatedCpf: string
         const originState = !state ? GeneralUtilities.randomGenerator(1) : CpfEmitorStates[state]
 
@@ -30,6 +30,12 @@ export class CpfOperations {
         generatedCpf = generatedCpf + firstDv
         const secondDv =  CalculationModules.moduleCustomCpf(generatedCpf)
 
-        return generatedCpf + secondDv
+        if(format) {
+            generatedCpf = (generatedCpf + secondDv).replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4')
+        } else {
+            generatedCpf = generatedCpf + secondDv
+        }   
+
+        return generatedCpf
     }
 }

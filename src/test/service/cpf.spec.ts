@@ -47,16 +47,22 @@ describe('Cpf Operations', () => {
             expect(isValid).toBe(true)
         });
         it('it should generate a valid CPF with state', () => {
-            const cpf = CpfOperations.generateCpf('SP')
+            const cpf = CpfOperations.generateCpf(false, 'SP')
             const isValid = CpfOperations.validateCpf(cpf)
             expect(isValid).toBe(true)
             expect(cpf[8]).toBe('8')
         });
         it('it should generate a valid CPF with another state', () => {
-            const cpf = CpfOperations.generateCpf('DF')
+            const cpf = CpfOperations.generateCpf(false, 'DF')
             const isValid = CpfOperations.validateCpf(cpf)
             expect(isValid).toBe(true)
             expect(cpf[8]).toBe('1')
+        })
+        it('it should generate a valid CPF with format', () => {
+            const cpf = CpfOperations.generateCpf(true, '')
+            const isValid = CpfOperations.validateCpf(cpf)
+            expect(cpf).toMatch(/^\d{3}\.\d{3}\.\d{3}-\d{2}$/)
+            expect(isValid).toBe(true)
         })
     })
 })
