@@ -26,8 +26,7 @@ import { GeneralUtilities } from '../../main/helpers/general'
 //3132.42
 //15-04-2025
 
-//pixQrCode 00020101021226800014br.gov.bcb.pix2558pix.asaas.com/qr/cobv/eb168d2e-b37d-4fee-8dc0-1ea198a1179f5204000053039865802BR5925CLARA INSITUICAO DE PAGA6009Sao Paulo61080453000062070503***6304DFDD
-
+//pixQrCode 
     describe("Utilities", () => {
         describe("Module10", () => {
             it("should receive a valid number string and correct calculate the verification digit", () => {
